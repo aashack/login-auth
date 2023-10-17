@@ -18,10 +18,10 @@ This will require that you have an instance of Redis running on your local machi
 ```bash
 docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest
 ```
-
 Once Redis is running, you can install and run this project using:
 
 ```bash
+git clone git@github.com:aashack/login-auth.git
 npm install
 npm run start
 ```
@@ -33,7 +33,15 @@ Redis connected
 Redis ready!
 ```
 
+If you are using Postman for a API tool, I've included a json file you can import with the endpoints you can use.
 
+These steps allow you to import the endpoints to your workspace
+```bash
+1. File --> Import
+2. Select workspace
+3. Select File.
+4. Choose Auth-Login.postman_collection.json
+```
 ## API Reference
 
 #### Sign Up
@@ -73,18 +81,24 @@ Redis ready!
 ```
 
 
+## FAQ
+
+#### Why did I use cookies instead of a bearer token or x-access-token?
+
+I had in mind a solution that would work in a microservice system, where if the authentication service went down it wouldn't affect the other services. In my idea, each service would ultilize a shared library that validated the cookie without having to call the auth service.
+
+#### What happens if a user is deleted and needs to be logged out and the Authentication service is down?
+
+In the completed application there should be a event-bus or a event service that notifies it to the rest of the services, and the shared library would have a check. It could store a list in redis and the middleware library checks it before each validation.
+
+#### using express-validator seems kindof lazy
+
+Without using a api manager like Apollow or Redwood, it is fast and effective, it also allows you to capture and customize your errors if you need to incorperate logging or addition functionality. It is sometimes useful to use ultilize third party libraries, express has been around so long that they become commonplace.
+
+
+
+
 ## Authors
 
 - [@aashack](https://www.github.com/aashack)
-
-
-## FAQ
-
-#### Question 1
-
-Answer 1
-
-#### Question 2
-
-Answer 2
 
