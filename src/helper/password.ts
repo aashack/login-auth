@@ -20,7 +20,7 @@ export class Password {
    * 
    * @param storedPassword 
    * @param suppliedPassword - plain english password
-   * @returns 
+   * @returns  hashed password.
    */
   static async compare(storedPassword: string, suppliedPassword: string) {
     const [hashedPassword, salt] = storedPassword.split('.');

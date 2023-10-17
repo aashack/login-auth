@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { CustomError } from '../errors/custom-error';
 
+
+/**
+ * Middleware that moves the error check in the index.ts file into a middleware function
+ */
 export const errorHandler = (
   err: Error,
   req: Request,

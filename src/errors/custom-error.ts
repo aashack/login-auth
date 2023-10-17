@@ -1,3 +1,7 @@
+
+/**
+ * Parent error that each error inherits from.
+ */
 export abstract class CustomError extends Error {
   abstract statusCode: number;
 

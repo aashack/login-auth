@@ -12,7 +12,7 @@ declare global {
       currentUser?: UserPayload;
     }
   }
-}
+};
 
 export const currentUser = (
   req: Request,
@@ -21,7 +21,7 @@ export const currentUser = (
 ) => {
   if (!req.session?.jwt) {
     return next();
-  }
+  };
 
   try {
     const token:any = config.get('token');
@@ -29,9 +29,10 @@ export const currentUser = (
       req.session.jwt,
       token.JWT_KEY!
     ) as UserPayload;
-    console.log(payload)
     req.currentUser = payload;
-  } catch (err) {}
+  } catch (err) {
+    // do nothing just continue, it will error in the route.
+  };
 
   next();
 };

@@ -1,5 +1,8 @@
 import { CustomError } from './custom-error';
 
+/**
+ * General error used for a multitude of things, mostly bad data.
+ */
 export class BadRequestError extends CustomError {
   statusCode = 400;
 

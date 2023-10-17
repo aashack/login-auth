@@ -21,15 +21,12 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
     let user = await UserController.signIn(email, password)
-    console.log(user.token)
-    // Store it on session object
+    // Store it on session object 
     req.session = {
       jwt: user.token
     };
 
-    console.log(req.session)
-
-    res.status(200).send({User: email});
+    res.status(200).send(user);
   }
 );
 

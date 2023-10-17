@@ -17,6 +17,9 @@ app.set('trust proxy', true);
 
 app.use(json());
 
+// I had to turn off signed and secure, the cookie-session library
+// was not generating a cookie despite it working fine in another instance.
+
 app.use(
   cookieSession({
     name: 'session',
@@ -30,6 +33,7 @@ app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
 
+// All other pages are 404
 app.all('*', async (req, res) => {
   throw new NotFoundError();
 });
@@ -37,8 +41,8 @@ app.all('*', async (req, res) => {
 app.use(errorHandler);
 
 const start = async () => {     
+  // if there is no JWT Key defined the app wont start.
   if(!config.has('token')) {
-    console.log('config.has');
     const token:any = config.get('token');
     throw new Error('JWT_KEY must be defined');
   }

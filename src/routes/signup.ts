@@ -1,10 +1,8 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import jwt from 'jsonwebtoken';
 
 import { validateRequest } from '../middlewares/validate-request';
-import { BadRequestError } from '../errors/bad-request-error';
-import UserController from '../controller/user-controller'
+import UserController from '../controller/user-controller';
 
 const router = express.Router();
 
@@ -23,9 +21,9 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    let user = await UserController.signUp(email, password)
+    let user = await UserController.signUp(email, password);
 
-        // Store it on session object
+    // Store it on session object
     req.session = {
           jwt: user.token
     };
@@ -33,6 +31,6 @@ router.post(
 
     res.status(201).send(user);
   }
-);
+)
 
 export { router as signupRouter };
