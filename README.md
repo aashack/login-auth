@@ -95,8 +95,9 @@ In the completed application there should be a event-bus or a event service that
 
 Without using a api manager like Apollow or Redwood, it is fast and effective, it also allows you to capture and customize your errors if you need to incorperate logging or addition functionality. It is sometimes useful to use ultilize third party libraries, express has been around so long that they become commonplace.
 
+#### how would the front end check get the logged in user?
 
-
+My intention is that they would call and endpoint like '/v1/users/currentuser' and it would provide them with needed information, like the token or user info.
 
 ## Authors
 

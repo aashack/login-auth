@@ -6,8 +6,13 @@ const router = express.Router();
 
 // Simple endpoint to check if a user is logged in
 router.get('/v1/users/currentuser', currentUser, requireAuth, (req, res) => {
+    
     res.send(
-        {currentUser: req.currentUser || null});
+        { 
+            email: req.currentUser?.email || null,
+            token: req.session?.jwt || null
+        }
+    );
 });
 
 export {router as currentUserRouter };
