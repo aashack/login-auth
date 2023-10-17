@@ -1,0 +1,10 @@
+{
+    "service": {
+      "name": "Login-Auth",
+      "url": "http://localhost",
+      "port": 3000
+    },
+    "token":{
+        "JWT_KEY": "7358de8d-a35d-4520-94dd-d3bb0c18a03c"
+    }
+}
